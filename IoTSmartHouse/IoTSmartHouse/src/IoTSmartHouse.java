@@ -4,10 +4,11 @@ public class IoTSmartHouse {
 
 	public static void main(String[] args)throws NoSuchAlgorithmException{
 		
-		//AccountManager create = new AccountManager();
-		//create.createAccount("Matthew","matthew");
+		AccountManager create = new AccountManager();
+		//create.createAccount("matt", "matt");
+		//create.changePassword("matt","matthew","bob");
 		
 		Authentication authenticate = new Authentication();
-		authenticate.authenticate("bob", "bob");
+		authenticate.authenticate("matt", "bob");
 	}
 }
