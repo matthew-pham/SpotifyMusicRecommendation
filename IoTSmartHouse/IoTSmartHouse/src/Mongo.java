@@ -4,7 +4,12 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Scanner;
 
 public class Mongo {
 
@@ -12,8 +17,9 @@ public class Mongo {
 	static MongoCollection<Document> collection;
 	
 	
-	public static void init() {
-		MongoClientURI connectionString = new MongoClientURI("mongodb://iotmatthew:3012OliverDR@iotsmarthouse-shard-00-00-bcd3h.mongodb.net:27017,iotsmarthouse-shard-00-01-bcd3h.mongodb.net:27017,iotsmarthouse-shard-00-02-bcd3h.mongodb.net:27017/test?ssl=true&replicaSet=IoTSmartHouse-shard-0&authSource=admin");
+	public static void init() throws IOException {
+		String clientURI = readFile("src/config.txt", StandardCharsets.UTF_8);
+		MongoClientURI connectionString = new MongoClientURI(clientURI);
 		 MongoClient mongoClient = new MongoClient(connectionString);
 		 
 		 database = mongoClient.getDatabase("login");
@@ -29,4 +35,10 @@ public class Mongo {
 		return collection;
 		
 	}
+	static String readFile(String path, Charset encoding) 
+			  throws IOException 
+			{
+			  byte[] encoded = Files.readAllBytes(Paths.get(path));
+			  return new String(encoded, encoding);
+			}
 }
