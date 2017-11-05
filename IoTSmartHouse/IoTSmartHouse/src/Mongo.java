@@ -13,7 +13,7 @@ public class Mongo {
 	
 	
 	public static void init() {
-		MongoClientURI connectionString = new MongoClientURI("");
+		MongoClientURI connectionString = new MongoClientURI("mongodb://iotmatthew:3012OliverDR@iotsmarthouse-shard-00-00-bcd3h.mongodb.net:27017,iotsmarthouse-shard-00-01-bcd3h.mongodb.net:27017,iotsmarthouse-shard-00-02-bcd3h.mongodb.net:27017/test?ssl=true&replicaSet=IoTSmartHouse-shard-0&authSource=admin");
 		 MongoClient mongoClient = new MongoClient(connectionString);
 		 
 		 database = mongoClient.getDatabase("login");

@@ -10,8 +10,7 @@ import org.bson.Document;
 public class AccountManager {
 	
 	public void createAccount(String username, String password) throws NoSuchAlgorithmException {
-		Mongo connect = new Mongo();
-		connect.init(); 
+		Mongo connect = new Mongo(); 
 		Encryption salt = new Encryption();
 		 
 		 String saltGen = salt.getSaltString();
@@ -37,7 +36,6 @@ public class AccountManager {
 	public void deleteAccount(String username, String password) throws NoSuchAlgorithmException {
 		
 		Mongo connect = new Mongo();
-		connect.init(); 
 		Document myDoc = connect.getMongoCollection().find(eq("User", username)).first();
 			
 			String query = myDoc.toJson();
@@ -57,7 +55,6 @@ public class AccountManager {
 	
 	public void changePassword(String username, String password, String newPassword) throws NoSuchAlgorithmException {
 		Mongo connect = new Mongo();
-		connect.init(); 
 		Document myDoc = connect.getMongoCollection().find(eq("User", username)).first();
 		if(myDoc != null) {
 		String query = myDoc.toJson();

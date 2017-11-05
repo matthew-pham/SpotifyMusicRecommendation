@@ -12,7 +12,6 @@ public class Authentication {
 	public static boolean authenticate(String username, String inputPassword) throws NoSuchAlgorithmException {
 
 		Mongo connect = new Mongo();
-		connect.init(); 
 		Document myDoc = connect.getMongoCollection().find(eq("User", username)).first();
 		
 		if(myDoc != null) {
